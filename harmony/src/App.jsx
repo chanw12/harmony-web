@@ -4,9 +4,13 @@ import SignUp from "./pages/signup/signup";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Header></Header>
-      <Routes></Routes>
+    <BrowserRouter forceRefresh={true}>
+      <div>
+        <Header />
+        <Routes>
+          <Route path="signup" element={<SignUp></SignUp>}></Route>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

@@ -2,17 +2,10 @@ import React from "react";
 
 const Header = (props) => {
   return (
-    <>
-      <div className=" bg-pink-300 text-white  flex space-x-52 text-4xl px-5 py-2 items-center">
-        <h1 className=" font-bold font-serif">harmony</h1>
-        <div className=" space-x-52 font-light text-2xl ">
-          <span>temp</span>
-          <span>temp</span>
-          <span>temp</span>
-          <span>temp</span>
-        </div>
-      </div>
-    </>
+    <nav className=" bg-pink-300 text-white justify-between flex text-4xl px-5 py-2 items-center w-full mb-10">
+      <h1 className=" font-bold font-serif">harmony</h1>
+      <div className=" w-2/3 font-light text-2xl flex justify-between"></div>
+    </nav>
   );
 };
 
