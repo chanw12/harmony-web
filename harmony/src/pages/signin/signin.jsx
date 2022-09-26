@@ -1,14 +1,16 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
+import useMutation from "../../libs/useMutation";
 
 const SignIn = (props) => {
   const { register, handleSubmit } = useForm();
+  const [enter, { loading, data, error }] = useMutation("/api/users/signin");
   const onSubmit = async (data, e) => {
     e.preventDefault();
-    console.log(data);
-    // // let user = await login()
-    // this.setState({ user })
+
+    if (loading) return;
+    enter(data);
   };
 
   const onError = (errors, e) => {
@@ -21,25 +23,21 @@ const SignIn = (props) => {
       <div className=" flex flex-col rounded-xl w-1/3 h-1/3 bg-gray-600 bg-opacity-10 items-center justify-center space-y-4 min-w-min">
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
-          className="flex flex-col items-center justify-center mx-2"
+          className="flex flex-col items-center justify-center space-y-4 mx-2"
         >
           <div className=" space-y-6 flex flex-col items-center justify-center ">
             <div className="flex flex-col ">
-              <label htmlFor="loginid" className=" text-lg">
-                ID
-              </label>
               <input
                 {...register("loginID")}
                 id="loginid"
                 type="text"
+                placeholder="ID"
                 className=" text-lg outline-none p-2 rounded-md bg-gray-100 bg-opacity-40 "
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="loginpwd" className="text-lg">
-                PASSWORD
-              </label>
               <input
+                placeholder="PASSWORD"
                 {...register("loginPwd")}
                 id="loginpwd"
                 type="password"
@@ -47,6 +45,7 @@ const SignIn = (props) => {
               />
             </div>
           </div>
+          <button type="submit">로 그 인</button>
         </form>
         <div className="flex text-gray-700 space-x-2 opacity-50 text-sm flex-shrink-0">
           <NavLink to="../signup">회원가입</NavLink>
