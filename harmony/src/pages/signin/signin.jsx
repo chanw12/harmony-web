@@ -8,7 +8,6 @@ const SignIn = (props) => {
   const [enter, { loading, data, error }] = useMutation("/api/users/signin");
   const onSubmit = async (data, e) => {
     e.preventDefault();
-
     if (loading) return;
     enter(data);
   };
