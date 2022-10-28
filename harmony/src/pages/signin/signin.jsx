@@ -1,20 +1,30 @@
 import React from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useMutation from "../../libs/useMutation";
 
 const SignIn = (props) => {
   const { register, handleSubmit } = useForm();
-  const [enter, { loading, data, error }] = useMutation("/api/users/signin");
-  const onSubmit = async (data, e) => {
+  const [enter, { loading, data, error }] = useMutation("/member/auth");
+  const navigate = useNavigate();
+  const onSubmit = async (giveData, e) => {
     e.preventDefault();
     if (loading) return;
-    enter(data);
+    enter({ user_id: giveData.loginID, password: giveData.loginPwd });
   };
 
   const onError = (errors, e) => {
     console.log(errors);
   };
+  useEffect(() => {
+    if (data?.message === "OK") {
+      navigate("/main");
+    }
+    if (error) {
+      console.log(error);
+    }
+  }, [data, error]);
 
   return (
     <div className="flex flex-col space-y-10 items-center justify-center bg-gradient-to-r from-purple-300 to-blue-200 h-[100vh] via-pink-200">
