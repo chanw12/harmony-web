@@ -1,5 +1,7 @@
 import React from "react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import useMutation from "../../libs/useMutation";
 
 const SignUp = (props) => {
@@ -11,17 +13,31 @@ const SignUp = (props) => {
   } = useForm({
     mode: "onChange",
   });
-  const [signup, { loading, data, error }] = useMutation("/api/users/signup");
-  const onValid = (data) => {
-    const pNum = "010" + data.signUpPNumber1 + data.signUpPNumber2;
-    data = { ...data, pNum };
-
+  const [signup, { loading, data, error }] = useMutation("/member");
+  const navigate = useNavigate();
+  const onValid = (validData) => {
+    const phone_number =
+      "010" + validData.signUpPNumber1 + validData.signUpPNumber2;
+    const giveData = {
+      phone_number,
+      user_id: validData.signUpID,
+      password: validData.signUpPassword,
+    };
     if (loading) return;
-    signup(data);
+    signup(giveData);
   };
-  const onInvalid = (data) => {
+
+  const onInvalid = (inValidData) => {
     console.log("hhh");
   };
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+    }
+    if (data?.message === "OK") {
+      navigate.push("/");
+    }
+  }, [data, error, navigate]);
   return (
     <div className=" px-10 py-10 flex justify-center relative flex-col items-center space-y-4">
       <span className=" font-dancing text-9xl text-pink-400 cursor-default select-none">
