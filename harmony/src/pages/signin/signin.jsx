@@ -27,9 +27,9 @@ const SignIn = (props) => {
   }, [data, error]);
 
   return (
-    <div className="flex flex-col space-y-10 items-center justify-center bg-gradient-to-r from-purple-300 to-blue-200 h-[100vh] via-pink-200">
+    <div className="flex flex-col space-y-10 items-center justify-center bg-gradient-to-r from-purple-300 to-blue-200 h-full min-h-[100vh] via-pink-200">
       <span className=" font-dancing text-9xl text-pink-400">Harmony</span>
-      <div className=" flex flex-col rounded-xl w-1/3 h-1/3 bg-gray-600 bg-opacity-10 items-center justify-center space-y-4 min-w-min">
+      <div className=" py-7 px- flex flex-col rounded-xl w-1/3 h-1/3 bg-gray-600 bg-opacity-10 items-center justify-center space-y-4">
         <form
           onSubmit={handleSubmit(onSubmit, onError)}
           className="flex flex-col items-center justify-center space-y-4 mx-2"
