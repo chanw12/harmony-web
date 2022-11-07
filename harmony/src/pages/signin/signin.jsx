@@ -6,7 +6,9 @@ import useMutation from "../../libs/useMutation";
 
 const SignIn = (props) => {
   const { register, handleSubmit } = useForm();
-  const [enter, { loading, data, error }] = useMutation("/member/auth");
+  const [enter, { loading, data, error }] = useMutation(
+    "http://115.85.181.222:8080/member/auth"
+  );
   const navigate = useNavigate();
   const onSubmit = async (giveData, e) => {
     e.preventDefault();

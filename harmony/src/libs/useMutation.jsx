@@ -14,6 +14,7 @@ export default function useMutation(url) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+      mode: "cors",
     })
       .then((response) => response.json().catch(() => {}))
       .then((data) => setState((prev) => ({ ...prev, data })))
