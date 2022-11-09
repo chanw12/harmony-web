@@ -245,6 +245,7 @@ const SignUp = (props) => {
               id="tel_1"
             />
             <button
+              type="button"
               onClick={phoneCheck}
               className=" w-1/5 px-2 py-2  text-white font tracking-widest rounded-md bg-pink-300 hover:bg-pink-400"
             >
