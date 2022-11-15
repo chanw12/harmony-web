@@ -7,7 +7,7 @@ import useMutation from "../../libs/useMutation";
 const SignIn = (props) => {
   const { register, handleSubmit } = useForm();
   const [enter, { loading, data, error }] = useMutation(
-    "http://115.85.181.222:8080/member/auth"
+    `${process.env.REACT_APP_SERVER_ADDR}/member/auth`
   );
   const navigate = useNavigate();
   const onSubmit = async (giveData, e) => {
@@ -66,7 +66,7 @@ const SignIn = (props) => {
           <button>비밀번호찾기</button>
         </div>
       </div>
-    </div> //
+    </div>
   );
 };
 
