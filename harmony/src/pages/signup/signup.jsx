@@ -45,7 +45,9 @@ const SignUp = (props) => {
     }
     clearErrors("signUpID");
     const check_data = await fetch(
-      `http://115.85.181.222:8080/member?user_id=${watch("signUpID")}`,
+      `${process.env.REACT_APP_SERVER_ADDR}/member?user_id=${watch(
+        "signUpID"
+      )}`,
       {
         method: "GET",
       }
@@ -79,7 +81,7 @@ const SignUp = (props) => {
     }
     clearErrors("signUpPNumber");
     const check_data = await fetch(
-      `http://115.85.181.222:8080/member?phone_number=010${watch(
+      `${process.env.REACT_APP_SERVER_ADDR}/member?phone_number=010${watch(
         "signUpPNumber"
       )}`,
       {

@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 import { getMessaging, getToken } from "firebase/messaging";
 
 const firebaseApp = initializeApp({
-  apiKey: "AIzaSyBhtfef9Otj2iIjcCwVS1PBgXwxEDUAoOo",
-  authDomain: "chat-fcm-df5ca.firebaseapp.com",
-  projectId: "chat-fcm-df5ca",
-  storageBucket: "chat-fcm-df5ca.appspot.com",
-  messagingSenderId: "316915531680",
-  appId: "1:316915531680:web:90e2147c59fe5bf05c6ec5",
-  measurementId: "G-75R619L1GR",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_SENDERID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 });
 
 const messaging = getMessaging(firebaseApp);
@@ -26,8 +26,7 @@ export { messaging };
 
 export const getTokenTW = (setTokenFound) => {
   return getToken(messaging, {
-    vapidKey:
-      "BD-ZvTYfUEdMnMP3iYCFB0ban0ARj7_wLguGXQZPZ76PSbRe8ZTT1ciGeK5V5Qcnn-ec7taBRIkN6WQPcmrMUpk",
+    vapidKey: process.env.REACT_APP_FIREBASE_VAPID_KEY,
   })
     .then((currentToken) => {
       if (currentToken) {
