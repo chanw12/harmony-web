@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import useMutation from "../../libs/useMutation";
-import { SHA256 } from "../../libs/useHash";
+import { sha256 } from "crypto-hash";
 const SignUp = (props) => {
   const {
     register,
@@ -18,16 +18,19 @@ const SignUp = (props) => {
   });
 
   const [signup, { loading, data, error }] = useMutation(
-    "http://115.85.181.222:8080/member"
+    `${process.env.REACT_APP_SERVER_ADDR}/member`
   );
   const navigate = useNavigate();
-  const onValid = (validData) => {
+  const onValid = async (validData) => {
     const phone_number = "010" + validData.signUpPNumber;
     const giveData = {
       phone_number,
       user_id: validData.signUpID,
-      password: SHA256(validData.signUpPassword),
+      password: await sha256(validData.signUpPassword).then((res) => {
+        return res;
+      }),
     };
+    console.log(giveData);
     if (loading) return;
     signup(giveData);
   };
